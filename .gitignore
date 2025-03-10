@@ -400,3 +400,4 @@ FodyWeavers.xsd
 *.sln.iml
 /template_be-main/Template_MS/appsettings.json
 /UniSearch/Template_MS/appsettings.json
+/UniSearch/UniSearch/appsettings.json

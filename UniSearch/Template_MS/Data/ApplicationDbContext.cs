@@ -49,23 +49,37 @@ namespace UniSearch.Data
            .HasForeignKey(s => s.RoleId);
 
             modelBuilder.Entity<LOGS>()
-          .HasKey(m => m.LOGD_ID);
+            .HasKey(m => m.LOGD_ID);
 
             modelBuilder.Entity<ApiPermissions>()
-          .HasKey(m => m.PermissionId);
+            .HasKey(m => m.PermissionId);
 
             modelBuilder.Entity<BranchDetail>()
-          .HasKey(m => m.BranchId);
+            .HasKey(m => m.BranchId);
 
             modelBuilder.Entity<BranchDetail>()
-           .HasOne(s => s.UserLoginInpBy)
-           .WithMany(g => g.branchDetailInpBy)
-           .HasForeignKey(s => s.InputBy);
+            .HasOne(s => s.UserLoginInpBy)
+            .WithMany(g => g.branchDetailInpBy)
+            .HasForeignKey(s => s.InputBy);
 
             modelBuilder.Entity<BranchDetail>()
-          .HasOne(s => s.UserLoginModiBy)
-          .WithMany(g => g.branchDetailModiBy)
-          .HasForeignKey(s => s.ModifyBy);
+            .HasOne(s => s.UserLoginModiBy)
+            .WithMany(g => g.branchDetailModiBy)
+            .HasForeignKey(s => s.ModifyBy);
+
+            modelBuilder.Entity<COURSES>()
+            .HasKey(c => c.COURSE_ID);
+
+
+            modelBuilder.Entity<UNIVERSITIES>()
+            .HasKey(u => u.UNIVERSITY_ID);
+            modelBuilder.Entity<UNIVERSITIES>().HasOne(u => u.COUNTRIES).WithMany(c => c.UNIVERSITIES).HasForeignKey(c => c.COUNTRY_ID);
+
+            modelBuilder.Entity<COUNTRIES>()
+            .HasKey(c => c.COUNTRY_ID);
+
+            modelBuilder.Entity<LANGUAGES>()
+            .HasKey(l => l.LANGUAGE_ID);
         }  
     }
 }
