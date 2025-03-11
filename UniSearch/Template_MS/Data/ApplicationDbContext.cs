@@ -67,8 +67,8 @@ namespace UniSearch.Data
             .WithMany(g => g.branchDetailModiBy)
             .HasForeignKey(s => s.ModifyBy);
 
-            modelBuilder.Entity<COURSES>()
-            .HasKey(c => c.COURSE_ID);
+            modelBuilder.Entity<PROGRAMS>()
+            .HasKey(c => c.PROGRAM_ID);
 
 
             modelBuilder.Entity<UNIVERSITIES>()

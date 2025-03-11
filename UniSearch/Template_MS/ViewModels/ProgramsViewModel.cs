@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace UniSearch.Models
+namespace UniSearch.ViewModels
 {
-    public class COURSES
+    public class ProgramsViewModel
     {
-        public Guid COURSE_ID { get; set; }
-        public string COURSE_NAME { get; set; }
+        public Guid PROGRAM_ID { get; set; }
+        public string PROGRAM_NAME { get; set; }
         public int? SEMESTERS { get; set; }
         public string SEMESTER_START { get; set; }
-        public string COURSE_TYPE { get; set; }
+        public string PROGRAM_TYPE { get; set; }
         public string IELTS_SCORE { get; set; }
         public string APPLICATION_DEADLINE { get; set; }
         public string LINKS { get; set; }
