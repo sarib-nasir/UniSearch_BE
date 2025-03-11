@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniSearch.Data;
 
@@ -11,9 +12,11 @@ using UniSearch.Data;
 namespace UniSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250311015512_joins-in-program-created-2")]
+    partial class joinsinprogramcreated2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -408,8 +411,8 @@ namespace UniSearch.Migrations
                     b.Property<string>("PROGRAM_NAME")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PROGRAM_TYPE_ID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PROGRAM_TYPE")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SEMESTERS")
                         .HasColumnType("int");
@@ -424,28 +427,9 @@ namespace UniSearch.Migrations
 
                     b.HasIndex("LANGUAGE_ID");
 
-                    b.HasIndex("PROGRAM_TYPE_ID");
-
                     b.HasIndex("UNIVERSITY_ID");
 
                     b.ToTable("PROGRAMS");
-                });
-
-            modelBuilder.Entity("UniSearch.Models.PROGRAM_TYPE", b =>
-                {
-                    b.Property<Guid>("PROGRAM_TYPE_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IS_ACTIVE")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PROGRAM_TYPE_NAME")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PROGRAM_TYPE_ID");
-
-                    b.ToTable("PROGRAM_TYPE");
                 });
 
             modelBuilder.Entity("UniSearch.Models.UNIVERSITIES", b =>
@@ -611,17 +595,11 @@ namespace UniSearch.Migrations
                         .WithMany("PROGRAMS")
                         .HasForeignKey("LANGUAGE_ID");
 
-                    b.HasOne("UniSearch.Models.PROGRAM_TYPE", "PROGRAM_TYPE")
-                        .WithMany("PROGRAMS")
-                        .HasForeignKey("PROGRAM_TYPE_ID");
-
                     b.HasOne("UniSearch.Models.UNIVERSITIES", "UNIVERSITIES")
                         .WithMany("PROGRAMS")
                         .HasForeignKey("UNIVERSITY_ID");
 
                     b.Navigation("LANGUAGES");
-
-                    b.Navigation("PROGRAM_TYPE");
 
                     b.Navigation("UNIVERSITIES");
                 });
@@ -654,11 +632,6 @@ namespace UniSearch.Migrations
                 });
 
             modelBuilder.Entity("UniSearch.Models.LANGUAGES", b =>
-                {
-                    b.Navigation("PROGRAMS");
-                });
-
-            modelBuilder.Entity("UniSearch.Models.PROGRAM_TYPE", b =>
                 {
                     b.Navigation("PROGRAMS");
                 });

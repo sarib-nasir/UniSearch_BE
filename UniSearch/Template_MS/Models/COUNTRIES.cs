@@ -11,6 +11,7 @@ namespace UniSearch.Models
         }
         public Guid COUNTRY_ID { get; set; }
         public string COUNTRY_NAME { get; set; }
+        public string COUNTRY_SHORT_NAME { get; set; }
         public bool IS_ACTIVE { get; set; }
         public List<UNIVERSITIES> UNIVERSITIES { get; set; }
 

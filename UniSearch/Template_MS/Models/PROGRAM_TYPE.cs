@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace UniSearch.Models
 {
-    public class LANGUAGES
+    public class PROGRAM_TYPE
     {
-        public LANGUAGES()
+        public PROGRAM_TYPE()
         {
             PROGRAMS = new List<PROGRAMS>();
         }
-        public Guid LANGUAGE_ID { get; set; }
-        public string LANGUAGE { get; set; }
-        public string LANGUAGE_CODE { get; set; }
+        public Guid PROGRAM_TYPE_ID { get; set; }
+        public string PROGRAM_TYPE_NAME { get; set; }
         public bool IS_ACTIVE { get; set; }
         public List<PROGRAMS> PROGRAMS { get; set; }
     }

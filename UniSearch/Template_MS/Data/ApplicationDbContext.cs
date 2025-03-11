@@ -69,17 +69,35 @@ namespace UniSearch.Data
 
             modelBuilder.Entity<PROGRAMS>()
             .HasKey(c => c.PROGRAM_ID);
+            modelBuilder.Entity<PROGRAMS>()
+            .HasOne(u => u.UNIVERSITIES)
+            .WithMany(c => c.PROGRAMS)
+            .HasForeignKey(c => c.UNIVERSITY_ID);
+            modelBuilder.Entity<PROGRAMS>()
+            .HasOne(u => u.LANGUAGES)
+            .WithMany(c => c.PROGRAMS)
+            .HasForeignKey(c => c.LANGUAGE_ID);
+            modelBuilder.Entity<PROGRAMS>()
+            .HasOne(u => u.PROGRAM_TYPE)
+            .WithMany(c => c.PROGRAMS)
+            .HasForeignKey(c => c.PROGRAM_TYPE_ID);
 
 
             modelBuilder.Entity<UNIVERSITIES>()
             .HasKey(u => u.UNIVERSITY_ID);
-            modelBuilder.Entity<UNIVERSITIES>().HasOne(u => u.COUNTRIES).WithMany(c => c.UNIVERSITIES).HasForeignKey(c => c.COUNTRY_ID);
+            modelBuilder.Entity<UNIVERSITIES>()
+            .HasOne(u => u.COUNTRIES)
+            .WithMany(c => c.UNIVERSITIES)
+            .HasForeignKey(c => c.COUNTRY_ID);
 
             modelBuilder.Entity<COUNTRIES>()
             .HasKey(c => c.COUNTRY_ID);
 
             modelBuilder.Entity<LANGUAGES>()
             .HasKey(l => l.LANGUAGE_ID);
+
+            modelBuilder.Entity<PROGRAM_TYPE>()
+            .HasKey(l => l.PROGRAM_TYPE_ID);
         }  
     }
 }
