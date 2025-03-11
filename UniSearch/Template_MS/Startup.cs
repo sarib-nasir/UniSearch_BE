@@ -38,6 +38,7 @@ namespace UniSearch
             services.AddScoped<IUserRegistrationService, UserRegistrationService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IProgramsService, ProgramsService>();
             services.AddControllers();
             services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
             services.Configure<IpRateLimitPolicies>(Configuration.GetSection("IpRateLimitPolicies"));

@@ -94,10 +94,30 @@ namespace UniSearch.Extensions
                 {
                     context.Response.Body = responseBody;
 
-                    await _next(context);
+                    try
+                    {
+                        await _next(context); // Call the next middleware
 
-                    _logger.LogInformation(await FormatResponse(context));
-                    await responseBody.CopyToAsync(originalBodyStream);
+                        // ✅ Ensure the stream is reset before reading
+                        responseBody.Seek(0, SeekOrigin.Begin);
+
+                        var responseText = await new StreamReader(responseBody).ReadToEndAsync();
+
+                        _logger.LogInformation(responseText); // Log response
+
+                        // ✅ Reset the position again before copying back
+                        responseBody.Seek(0, SeekOrigin.Begin);
+                        await responseBody.CopyToAsync(originalBodyStream);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError($"Error in response middleware: {ex.Message}");
+                        throw; // Ensure exception is re-thrown for proper handling
+                    }
+                    finally
+                    {
+                        context.Response.Body = originalBodyStream; // Restore original stream
+                    }
                 }
             }
             else if(!isProcess)
