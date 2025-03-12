@@ -32,7 +32,7 @@ namespace UniSearch.Services.Provider
             }
             else
             {
-                _apiResponse.data = GetList(x => x.IS_ACTIVE == true).OrderByDescending(x => x.PROGRAM_ID);
+                _apiResponse.data = GetList(x => x.IS_ACTIVE == true, x => x.UNIVERSITIES, x => x.LANGUAGES).ToList();
                 if (_apiResponse.data != null)
                 {
                     _apiResponse.statusCode = "00";

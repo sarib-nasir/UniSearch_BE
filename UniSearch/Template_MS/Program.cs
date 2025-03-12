@@ -17,6 +17,7 @@ using UniSearch.Services.Provider;
 using System;
 using System.Collections.Generic;
 using UniSearch.Helper;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -37,6 +38,7 @@ builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.SnakeCaseUpper;
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
 builder.Services.Configure<IpRateLimitOptions>(configuration.GetSection("IpRateLimiting"));

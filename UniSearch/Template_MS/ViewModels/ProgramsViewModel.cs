@@ -8,7 +8,7 @@ namespace UniSearch.ViewModels
         public string PROGRAM_NAME { get; set; }
         public int? SEMESTERS { get; set; }
         public string SEMESTER_START { get; set; }
-        public string PROGRAM_TYPE { get; set; }
+        public string PROGRAM_TYPE_ID { get; set; }
         public string IELTS_SCORE { get; set; }
         public string APPLICATION_DEADLINE { get; set; }
         public string LINKS { get; set; }
