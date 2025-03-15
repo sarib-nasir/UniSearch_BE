@@ -8,6 +8,7 @@ namespace UniSearch.Models
         public Guid PROGRAM_ID { get; set; }
         public string PROGRAM_NAME { get; set; }
         public string PROGRAM_TAGS { get; set; }
+        public string PROGRAM_MINIMUM_GPA { get; set; }
         public int? SEMESTERS { get; set; }
         public string SEMESTER_START { get; set; }
         public string IELTS_SCORE { get; set; }
