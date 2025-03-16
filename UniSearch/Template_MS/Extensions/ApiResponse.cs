@@ -23,6 +23,9 @@ namespace UniSearch.Extensions
         [JsonPropertyName("data")]
         public object data { get; set; }
 
+        [JsonPropertyName("columns")]
+        public object columns { get; set; }
+
         [JsonPropertyName("token")]
         public string Token { get; set; }
 
