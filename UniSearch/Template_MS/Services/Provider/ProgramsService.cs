@@ -39,12 +39,14 @@ namespace UniSearch.Services.Provider
 
                     if (!string.IsNullOrEmpty(model.PROGRAM_NAME))
                     {
-                        expr.And(x => x.PROGRAM_NAME == model.PROGRAM_NAME);
+                        expr.And(x => x.PROGRAM_TAGS != null &&
+              x.PROGRAM_TAGS.ToLower().Contains(model.PROGRAM_NAME.ToLower()));
+
                         isFilter = true;
                     }
                     if (!string.IsNullOrEmpty(model.IELTS_SCORE))
                     {
-                        expr.And(x => x.IELTS_SCORE == model.IELTS_SCORE);
+                        expr.And(x => float.Parse(x.IELTS_SCORE) <= float.Parse(model.IELTS_SCORE));
                         isFilter = true;
                     }
                     if (isFilter)

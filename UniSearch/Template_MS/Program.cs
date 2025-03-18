@@ -98,7 +98,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:4200")
+        builder.WithOrigins("http://localhost:4200", "http://ahsanaziz-001-site53.anytempurl.com/")
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();
